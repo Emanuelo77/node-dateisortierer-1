@@ -1,6 +1,4 @@
-const fs = require('fs');
-
-function createDirs(folderPath: string, folderNames: string): {
+function createDirs(folderPath: string, folderNames: string):{
   // Iteriere durch jedes Element in folderNames
   for (const folderName of folderNames) {
     // Konstruiere den vollständigen Pfad zum Ordner
