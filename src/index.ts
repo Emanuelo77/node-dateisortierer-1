@@ -5,27 +5,24 @@ import { createDirs } from './helpers'
 
 // Step 1. List the contents of the folder.
 
-const dirContent = fs.readdirSync('./input')
-console.log(dirContent)
+const inhalteOrdner = fs.readdirSync('./input')
+console.log(inhalteOrdner)
 
 // Step 2. Identufy file types.
 
-const extensions = extractFileExtensions(dirContent)
-console.log(extensions)
+const endungen = dateiEndungenErstellen(inhalteOrdner)
+console.log(endungen)
 
-const extensionsArray = Array.from(extensions)
-console.log(extensionsArray)
-// Step 3. Sort files based on conditions.
+// Step 3. Sort file based on conditions.
 
-createDirs('./output', extensionsArray)
-
-//fs.copyFileSync('./input/', './output/.pdf/document.pdf')
-
-for (const file of dirContent) {
-    const ext = path.extname(file)
+for ( const endung of endungen) {
     try {
-        fs.copyFileSync('./input/' + file, './output/' + ext + '/' + file)
-    } catch (e) {
-        console.error(e)
-    }
+       fs.mkdirsync('./output' + endung)
+   } catch (e) {
+     console.error("Das Verzeichnis existiert schon.")
+   }
 }
+inhalteOrdner.forEach(file=> {
+    const ext = path.extname (file)
+    fs.copyFileSync('./input/' + file './output' + ext + '/' + file ) 
+})
